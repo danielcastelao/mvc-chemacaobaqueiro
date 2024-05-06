@@ -11,4 +11,15 @@ public class Model {
         return parking;
     }
 
+    public static Coche getCoche(String matricula) {
+        for (Coche coche : parking) {
+            if (coche.getMatricula().equals(matricula)) {
+                return coche;
+            }
+        }
+
+        return null;
+    }
+
+
 }
