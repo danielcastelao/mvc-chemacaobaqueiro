@@ -57,6 +57,11 @@ public class Model {
         Coche coche = getCoche(matricula);
         return coche.getVelocidad();
     }
+
+    /**
+     * Metodos getter y setters para el arraylist de parking
+     * @return
+     */
     public static ArrayList<Coche> getParking() {
         return parking;
     }
