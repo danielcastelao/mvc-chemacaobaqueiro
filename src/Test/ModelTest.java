@@ -3,8 +3,6 @@ import cod.mvc.Model;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 public class ModelTest {
     @Test
     public void crearCocheReturnTrue(){
@@ -13,18 +11,18 @@ public class ModelTest {
 
     @Test
     public void getCocheAssertSameReturnTrue(){
-        ArrayList<Coche> coche = Model.crearCoche("modelo", "matricula", 20);
-        Model.parking.add(coche.get(0));
+        Coche coche = Model.crearCoche("modelo", "matricula", 20);
+        Model.parking.add(coche);
         Assertions.assertEquals(Model.getCoche("matricula"), coche);
     }
 
     @Test
     public void cambiarVelocidadComprobarCambioReturnTrue(){
-        ArrayList<Coche> coche = Model.crearCoche("modelo", "matricula", 20);
+        Coche coche = Model.crearCoche("modelo", "matricula", 20);
         Integer velocidad = 40;
-        Model.parking.add(coche.get(0));
+        Model.parking.add(coche);
         Model.cambiarVelocidad("matricula", velocidad);
-        Assertions.assertEquals(velocidad, Model.getVelocidad("matricula"));
+        Assertions.assertEquals(velocidad, coche.getVelocidad());
 
     }
 

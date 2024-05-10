@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Model {
 
-    private static ArrayList<Coche> parking = new ArrayList<>();
+
+    public static ArrayList<Coche> parking = new ArrayList<>();
 
     /**
      * Metodo en el que se crea un coche
@@ -13,9 +14,10 @@ public class Model {
      * @param newVelocidad velocidad del coche
      * @return array con los coches
      */
-    public static ArrayList<Coche> crearCoche(String newModelo, String newMatricula, Integer newVelocidad) {
-        parking.add(new Coche(newModelo, newMatricula, newVelocidad));
-        return parking;
+    public static Coche crearCoche(String newModelo, String newMatricula, Integer newVelocidad) {
+
+        Coche newCoche = new Coche(newModelo, newMatricula, newVelocidad);
+        return newCoche;
     }
 
     /**
@@ -35,17 +37,15 @@ public class Model {
 
     /**
      * Metodo en el cual se puede cambiar la velocidad de un coche
+     *
      * @param matricula identificador del coche
      * @param velocidad velocidad a la que la quieres cambiar
      * @return devuelve la velocidad
      */
-    public static Integer cambiarVelocidad(String matricula, Integer velocidad) {
-        for (Coche coche : parking) {
-            if (coche.getMatricula().equals(matricula)) {
-                coche.setVelocidad(velocidad);
-            }
-        }
-        return velocidad;
+    public static boolean cambiarVelocidad(String matricula, Integer velocidad) {
+        Coche coche = getCoche(matricula);
+        coche.setVelocidad(velocidad);
+        return true;
     }
 
     /**
@@ -54,11 +54,15 @@ public class Model {
      * @return devuelve la velocidad del coche
      */
     public static Integer getVelocidad(String matricula) {
-        for (Coche coche : parking) {
-            if (coche.getMatricula().equals(matricula)) {
-                return coche.getVelocidad();
-            }
-        }
-        return null;
+        Coche coche = getCoche(matricula);
+        return coche.getVelocidad();
     }
+    public static ArrayList<Coche> getParking() {
+        return parking;
+    }
+
+    public static void setParking(ArrayList<Coche> parking) {
+        Model.parking = parking;
+    }
+
 }
