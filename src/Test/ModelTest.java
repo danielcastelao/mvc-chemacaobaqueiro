@@ -13,7 +13,7 @@ public class ModelTest {
     public void getCocheAssertSameReturnTrue(){
         Coche coche = Model.crearCoche("modelo", "matricula", 20);
         Model.parking.add(coche);
-        Assertions.assertEquals(Model.getCoche("matricula"), coche);
+        Assertions.assertEquals(Model.getCoche("matricula "), coche);
     }
 
     @Test
