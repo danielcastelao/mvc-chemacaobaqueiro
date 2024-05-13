@@ -1,6 +1,7 @@
-package cod.mvc;
+package cod.mvc.model;
 
 import java.util.ArrayList;
+import cod.mvc.controller.Observer;
 
 public class Model {
 
@@ -14,6 +15,7 @@ public class Model {
      * @param newVelocidad velocidad del coche
      * @return array con los coches
      */
+
     public static Coche crearCoche(String newModelo, String newMatricula, Integer newVelocidad) {
 
         Coche newCoche = new Coche(newModelo, newMatricula, newVelocidad);
@@ -25,6 +27,7 @@ public class Model {
      * @param matricula identificador del coche
      * @return devuelve el coche asociado a la mátricula introducida
      */
+
     public static Coche getCoche(String matricula) {
         for (Coche coche : parking) {
             if (coche.getMatricula().equals(matricula)) {
@@ -42,6 +45,7 @@ public class Model {
      * @param velocidad velocidad a la que la quieres cambiar
      * @return devuelve la velocidad
      */
+
     public static boolean cambiarVelocidad(String matricula, Integer velocidad) {
         Coche coche = getCoche(matricula);
         coche.setVelocidad(velocidad);
@@ -53,6 +57,26 @@ public class Model {
      * @param matricula identificador del coche
      * @return devuelve la velocidad del coche
      */
+
+
+    private static final ArrayList<Observer> observers = new ArrayList<Observer>();
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(Coche coche) {
+        for (Observer observer : observers) {
+            observer.update(coche);
+        }
+    }
+
     public static Integer getVelocidad(String matricula) {
         Coche coche = getCoche(matricula);
         return coche.getVelocidad();
