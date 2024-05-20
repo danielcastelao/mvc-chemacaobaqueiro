@@ -6,6 +6,7 @@ import cod.mvc.view.View;
 
 public class Controller {
 
+    private final Model miModel;
     /**
      * Nueva clase controller para crear un nuevo coche y mostrarlo por pantalla
      */
@@ -18,4 +19,20 @@ public class Controller {
         System.out.println(View.muestraVelocidad(miCoche.getMatricula(), miCoche.getVelocidad()));
 
     }
+    public Controller(Model miModel) {
+        this.miModel = miModel;
+
+        ObservableVelocidad obsVel = new ObservableVelocidad();
+        miModel.addObserver(obsVel);
+
+        ObserverLimite obsLim = new ObserverLimite();
+        miModel.addObserver(obsLim);
+    }
+
+    public Coche crearCoche(String modelo, String matricula, int velocidad) {miModel.crearCoche(matricula,modelo,velocidad)};
+
+    public void cambiarVelocidad(String matricula, Integer velocidad) {
+        miModel.cambiarVelocidad(matricula,velocidad);
+    }
+
 }
