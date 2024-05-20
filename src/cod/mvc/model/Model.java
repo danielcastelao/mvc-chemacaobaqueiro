@@ -3,7 +3,7 @@ package cod.mvc.model;
 import java.util.ArrayList;
 import cod.mvc.controller.Observer;
 
-public class Model {
+public class Model implements Observable{
 
 
     public static ArrayList<Coche> parking = new ArrayList<>();
@@ -58,6 +58,10 @@ public class Model {
      * @return devuelve la velocidad del coche
      */
 
+    public static Integer getVelocidad(String matricula) {
+        Coche coche = getCoche(matricula);
+        return coche.getVelocidad();
+    }
 
     private static final ArrayList<Observer> observers = new ArrayList<Observer>();
 
@@ -77,10 +81,7 @@ public class Model {
         }
     }
 
-    public static Integer getVelocidad(String matricula) {
-        Coche coche = getCoche(matricula);
-        return coche.getVelocidad();
-    }
+
     public static ArrayList<Coche> getParking() {
         return parking;
     }
