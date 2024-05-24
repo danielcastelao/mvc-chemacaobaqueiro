@@ -4,7 +4,7 @@ import cod.mvc.model.Coche;
 
 public class ObserverLimite implements Observer{
 
-    final static int vlimite = 120;
+    final static int vlimite = 200;
 
 
     @Override
