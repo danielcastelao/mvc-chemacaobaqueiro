@@ -29,9 +29,12 @@ public class Controller {
         miModel.addObserver(obsLim);
     }
 
-    public Coche crearCoche(String modelo, String matricula, int velocidad) {miModel.crearCoche(matricula,modelo,velocidad)};
+    public void crearCoche(String modelo, String matricula, int velocidad) {
+        miModel.crearCoche(matricula,modelo,velocidad);
+    }
 
     public void cambiarVelocidad(String matricula, Integer velocidad) {
+
         miModel.cambiarVelocidad(matricula,velocidad);
     }
 
