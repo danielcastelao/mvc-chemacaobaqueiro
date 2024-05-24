@@ -45,7 +45,7 @@ public class ModelTest {
         Coche coche = Model.getCoche("MatriculaTest");
         assertEquals(350, coche.getVelocidad());
 
-        String salidaTest = "Se ha cambiado la velocidad 350km/h\n"+"MatriculaTest: 350km/h\n"+"Infraccion\n";
+        String salidaTest = "Se ha cambiado  la velocidad 350km/h\n"+"MatriculaTest: 350km/h\n"+"Infraccion\n";
         assertEquals(salidaTest, salida.toString());
     }
 }
