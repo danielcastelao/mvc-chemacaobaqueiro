@@ -11,7 +11,7 @@ public class App {
 
     public static void main(String[] args) {
 
-        Model miModel = new Model();
+        Model miModel = Model.getInstancia();
 
         Controller miController = new Controller(miModel);
 
@@ -30,7 +30,7 @@ public class App {
         /**
          * Prueba para comprobar si funciona el buscador de coches
          */
-        buscador.buscarCoche("YIO 9875");
+        buscador.buscarCoche("LKN 4348");
 
     }
 }

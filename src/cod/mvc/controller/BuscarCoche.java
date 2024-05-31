@@ -3,25 +3,28 @@ package cod.mvc.controller;
 import cod.mvc.model.Coche;
 import cod.mvc.model.Model;
 
-public class BuscarCoche {
+import static cod.mvc.model.Model.parking;
 
+public class BuscarCoche {
+    Coche coche = new Coche();
+    Model miModel = Model.getInstancia();
     /**
      * variables las cuales voy a usar para en la view mostrar los datos del coche
      */
-
-    public static String modelo;
-    public static Integer vel;
+    public static Coche buscador;
 
     /**
      * Clase pora buscar un coche segun la matricula
      * @param matricula
      */
 
-    public void buscarCoche(String matricula){
-        if(matricula.equals(Coche.matricula)){
-            modelo = Coche.modelo;
-            vel = Coche.velocidad;
+    public Coche buscarCoche(String matricula){
+        for (Coche buscar: parking) {
+            if (buscar.matricula.equals(matricula)) {
+                buscador = buscar;
+            }
         }
+        return buscador;
     }
 
 }

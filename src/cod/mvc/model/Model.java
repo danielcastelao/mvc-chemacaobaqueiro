@@ -10,10 +10,26 @@ import java.util.ArrayList;
  * El Model será el encargado de notificar a los observadores
  */
 public class Model implements Observable {
-    private static Model instance = null;
+    private static Model instancia = null;
 
+    /**
+     * Constructor privado de la clase
+     */
+    private Model() {}
+
+
+    /**
+     * Con este metodo conseguimos una instancia unica de nuestra clase
+     * @return instancia anterior
+     */
+    public static Model getInstancia() {
+        if (instancia == null) {
+            instancia = new Model();
+        }
+        return instancia;
+    }
     // array de coches
-    static ArrayList<Coche> parking = new ArrayList<>();
+    public static ArrayList<Coche> parking = new ArrayList<>();
 
     private static final ArrayList<Observer> observers = new ArrayList<Observer>();
 
