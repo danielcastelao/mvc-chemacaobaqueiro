@@ -10,10 +10,28 @@ import java.util.ArrayList;
  * El Model será el encargado de notificar a los observadores
  */
 public class Model implements Observable {
-    private static Model instance = null;
 
-    private Model(){
+    /**
+     * Empezamos con el singleton el cual primero tiene que tener una instancia privada para dicha clase, la cual inicializamos en null
+     */
 
+    private static Model instancia = null;
+
+    /**
+     * Constructor privado de la clase
+     */
+    private Model() {}
+
+
+    /**
+     * Con este metodo conseguimos una instancia unica de nuestra clase
+      * @return instancia anterior
+     */
+    public static Model getInstancia() {
+        if (instancia == null) {
+            instancia = new Model();
+        }
+        return instancia;
     }
 
 
@@ -100,3 +118,4 @@ public class Model implements Observable {
         return getCoche(matricula).velocidad;
     }
 }
+

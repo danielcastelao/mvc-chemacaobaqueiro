@@ -11,7 +11,7 @@ public class App {
 
     public static void main(String[] args) {
 
-        Model miModel = new Model();
+        Model miModel = Model.getInstancia();
 
         Controller miController = new Controller(miModel);
 
@@ -34,3 +34,5 @@ public class App {
 
     }
 }
+
+
