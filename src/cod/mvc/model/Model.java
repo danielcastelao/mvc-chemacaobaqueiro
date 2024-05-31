@@ -12,6 +12,11 @@ import java.util.ArrayList;
 public class Model implements Observable {
     private static Model instance = null;
 
+    private Model(){
+
+    }
+
+
     // array de coches
     static ArrayList<Coche> parking = new ArrayList<>();
 
