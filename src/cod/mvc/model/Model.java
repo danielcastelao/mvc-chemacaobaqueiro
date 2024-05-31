@@ -1,13 +1,21 @@
 package cod.mvc.model;
 
-import java.util.ArrayList;
 import cod.mvc.controller.Observer;
 
-public class Model implements Observable{
+import java.util.ArrayList;
 
-    public static ArrayList<Coche> parking = new ArrayList<>();
 
-    private static final ArrayList<Observer> observers = new ArrayList<>();
+/**
+ * Vamos a usar la interface Observable
+ * El Model será el encargado de notificar a los observadores
+ */
+public class Model implements Observable {
+    private static Model instance = null;
+
+    // array de coches
+    static ArrayList<Coche> parking = new ArrayList<>();
+
+    private static final ArrayList<Observer> observers = new ArrayList<Observer>();
 
     @Override
     public void addObserver(Observer observer) {
@@ -18,6 +26,11 @@ public class Model implements Observable{
         observers.remove(observer);
     }
 
+    /**
+     * Notifica a los observadores
+     * Se ejecutara el método update() de cada observador
+     * @param coche
+     */
     @Override
     public void notifyObservers(Coche coche) {
         for (Observer observer : observers) {
@@ -26,60 +39,59 @@ public class Model implements Observable{
     }
 
 
-
     /**
-     * Metodo en el que se crea un coche
-     * @param newModelo modelo del coche
-     * @param newMatricula identificador del coche
-     * @return array con los coches
+     * Crea un coche y lo mete en el parking
+     * @param modelo del coche
+     * @param matricula identificador unico
+     * @return el coche creado
      */
-
-    public static Coche crearCoche(String newModelo, String newMatricula) {
-
-        Coche newCoche = new Coche(newModelo, newMatricula);
-        parking.add(newCoche);
-        return newCoche;
+    public Coche crearCoche(String modelo, String matricula){
+        Coche aux = new Coche(modelo, matricula);
+        parking.add(aux);
+        return aux;
     }
 
     /**
-     * Metodo para sacar el coche creado anteriormente
-     * @param matricula identificador del coche
-     * @return devuelve el coche asociado a la mátricula introducida
+     * Busca coche segun matricula
+     * @param matricula a buscar
+     * @return chche o null si no existe
      */
-
-    public static Coche getCoche(String matricula) {
-        Coche newCoche = null;
-        for (Coche coche : parking) {
-            if (coche.matricula.equals(matricula)) {
-                newCoche = coche;
+    public Coche getCoche(String matricula){
+        Coche aux = null;
+        // recorre el array buscando por matricula
+        for (Coche e: parking) {
+            if (e.matricula.equals(matricula)) {
+                aux = e;
             }
         }
-        return newCoche;
+        return aux;
     }
 
     /**
-     * Metodo en el cual se puede cambiar la velocidad de un coche
+     * Método que cambia la velocidad, por lo tanto
+     * tendrá que avisar al controlador que ha cambiado
      *
      * @param matricula identificador del coche
-     * @param velocidad velocidad a la que la quieres cambiar
+     * @param v nueva velocidad
      */
+    public void cambiarVelocidad(String matricula, Integer v) {
+        // busca el coche
+        getCoche(matricula).velocidad = v;
 
-    public void cambiarVelocidad(String matricula, Integer velocidad) {
-        getCoche(matricula).velocidad = velocidad;
+        // lo notificamos a todos los observadores
         notifyObservers(getCoche(matricula));
+
+        // ya no retornamos la nueva velocidad
+        // porque vamos a utilizar el patron observer
+        // return getCoche(matricula).velocidad;
     }
 
     /**
-     * Metodo para sacar la velocidad de un coche
+     * Devuelve la velocidad según la matrícula
      * @param matricula identificador del coche
-     * @return devuelve la velocidad del coche
+     * @return velocidad del coche actual
      */
-
-    public static Integer getVelocidad(String matricula) {
-        Coche coche = getCoche(matricula);
-        return coche.velocidad;
+    public Integer getVelocidad(String matricula) {
+        return getCoche(matricula).velocidad;
     }
-
-
-
 }
