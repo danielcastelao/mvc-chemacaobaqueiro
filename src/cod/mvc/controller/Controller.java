@@ -1,41 +1,49 @@
 package cod.mvc.controller;
 
-import cod.mvc.model.Coche;
 import cod.mvc.model.Model;
-import cod.mvc.view.View;
 
-public class Controller {
+public class Controller{
 
+    // definimos la instancia del modelo
     private final Model miModel;
+
     /**
-     * Nueva clase controller para crear un nuevo coche y mostrarlo por pantalla
+     * Constructor. Inicializamos el controller
+     * Creamos los observadores que necesitamos
+     * @param miModel
      */
-    public static void controladorCoches(){
-
-        Model.crearCoche("zl1", "0765-VGF", 250);
-        Coche miCoche = Model.getCoche("0765-VGF");
-
-
-        System.out.println(View.muestraVelocidad(miCoche.getMatricula(), miCoche.getVelocidad()));
-
-    }
-    public Controller(Model miModel) {
+    public Controller(Model miModel){
         this.miModel = miModel;
 
-        ObservableVelocidad obsVel = new ObservableVelocidad();
-        miModel.addObserver(obsVel);
+        // instanciamos al observador de la velocidad
+        ObserverVelocidad observoVelocidad = new ObserverVelocidad();
+        miModel.addObserver(observoVelocidad);
 
-        ObserverLimite obsLim = new ObserverLimite();
-        miModel.addObserver(obsLim);
+        // instanciamos un segundo observador para el limite de velocidad
+        ObserverLimite observoLimite = new ObserverLimite();
+        miModel.addObserver(observoLimite);
     }
 
-    public void crearCoche(String modelo, String matricula, int velocidad) {
-        miModel.crearCoche(matricula,modelo,velocidad);
+    /**
+     * Crea un coche
+     * @param modelo del coche
+     * @param matricula del coche
+     */
+    public void crearCoche(String modelo, String matricula){
+        miModel.crearCoche(modelo, matricula);
     }
 
-    public void cambiarVelocidad(String matricula, Integer velocidad) {
-
-        miModel.cambiarVelocidad(matricula,velocidad);
+    /**
+     * Cambia la velocidad de un coche
+     * @param matricula del coche
+     * @param velocidad nueva
+     */
+    public void cambiarVelocidad(String matricula, Integer velocidad){
+        miModel.cambiarVelocidad(matricula, velocidad);
     }
+
+
+
+
 
 }
