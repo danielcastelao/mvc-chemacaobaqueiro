@@ -46,15 +46,6 @@ public class Controller{
     }
 
     /**
-     * Cambia la velocidad de un coche
-     * @param matricula del coche
-     * @param velocidad a cambiar
-     */
-    public void cambiarVelocidad(String matricula, Integer velocidad){
-        miModel.cambiarVelocidad(matricula, velocidad);
-    }
-
-    /**
      * Busca un coche y nos muestra sus datos
      * @param matricula del coche
      */
@@ -71,4 +62,12 @@ public class Controller{
         miModel.subirVelocidad(matricula, velocidad);
     }
 
+    /**
+     * Baja la velocidad de un coche
+     * @param matricula del coche
+     * @param velocidad a bajar
+     */
+    public void bajarVelocidad(String matricula,Integer velocidad){
+        miModel.bajarVelocidad(matricula,velocidad);
+    }
 }
