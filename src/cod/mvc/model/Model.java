@@ -111,7 +111,7 @@ public class Model implements Observable {
     /**
      * Método que baja la velocidad de un coche
      * @param matricula del coche
-     * @param reduccion a bajar
+     * @param reduccion a velocidad
      */
     public void bajarVelocidad(String matricula, Integer reduccion) {
         Coche coche = getDatosCoche(matricula);

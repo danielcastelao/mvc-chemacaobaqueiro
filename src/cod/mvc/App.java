@@ -17,6 +17,6 @@ public class App {
 
         controller.subirVelocidad("PWU 3105",15);
 
-        controller.bajarVelocidad("PWU 3105",20);
+        controller.bajarVelocidad("PWU 3105",10);
     }
 }
