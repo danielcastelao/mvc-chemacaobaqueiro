@@ -14,12 +14,9 @@ public class App {
         controller.crearCoche("Panamera","PWU 3105",170);
         controller.crearCoche("Huracan","JTA 4310",250);
 
-        controller.cambiarVelocidad("JTA 4310",150);
-
-
-        controller.cambiarVelocidad("MJK 6976",300);
 
         controller.subirVelocidad("PWU 3105",15);
 
+        controller.bajarVelocidad("PWU 3105",20);
     }
 }
