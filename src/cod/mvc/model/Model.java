@@ -108,18 +108,7 @@ public class Model implements Observable {
             notifyObservers(coche);
         }
     }
-    /**
-     * Método que baja la velocidad de un coche
-     * @param matricula del coche
-     * @param reduccion a bajar
-     */
-    public void bajarVelocidad(String matricula, Integer reduccion) {
-        Coche coche = getDatosCoche(matricula);
-        if (coche != null) {
-            coche.setVelocidad(coche.getVelocidad() - reduccion);
-            notifyObservers(coche);
-        }
-    }
+
 
     /**
      * Método que devuelve la instancia de la clase Model
