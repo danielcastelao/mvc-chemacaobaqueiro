@@ -6,7 +6,7 @@ import cod.mvc.model.Model;
 public class App {
     public static void main(String[] args) {
 
-        Model model = new Model();
+        Model model = Model.getInstance();
 
         Controller controller = new Controller(model);
 
@@ -18,5 +18,8 @@ public class App {
 
 
         controller.cambiarVelocidad("MJK 6976",300);
+
+        controller.subirVelocidad("PWU 3105",15);
+
     }
 }
